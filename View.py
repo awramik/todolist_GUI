@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QTableView, QPushButton
+from PyQt5.QtWidgets import QTableView, QPushButton, QHeaderView
 from PyQt5.QtWidgets import QHBoxLayout, QVBoxLayout
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QDialog, QDialogButtonBox
@@ -15,7 +15,7 @@ class Ui_Widget(object):
         self.widok = QTableView()
 
         # przyciski Push ###
-        self.logujBtn = QPushButton("Za&loguj")
+        self.logujBtn = QPushButton("&Zaloguj")
         self.koniecBtn = QPushButton("&Koniec")
         self.dodajBtn = QPushButton("&Dodaj")
         self.dodajBtn.setEnabled(False)
@@ -29,14 +29,22 @@ class Ui_Widget(object):
         uklad.addWidget(self.zapiszBtn)
         uklad.addWidget(self.koniecBtn)
 
+        # zmiana kolorów przycisków
+        self.logujBtn.setStyleSheet("background-color: #a39081; color: #292522;")
+        self.koniecBtn.setStyleSheet("background-color: #a39081; color: #292522;")
+        self.dodajBtn.setStyleSheet("background-color: #a39081; color: #292522;")
+        self.zapiszBtn.setStyleSheet("background-color: #a39081; color: #292522;")
+
         # główny układ okna ###
         ukladV = QVBoxLayout(self)
         ukladV.addWidget(self.widok)
         ukladV.addLayout(uklad)
 
         # właściwości widżetu ###
+        self.setStyleSheet("background-color: #4d6160")
         self.setWindowTitle("To Do List App")
-        self.resize(500, 300)
+        self.resize(800, 500)
+
 
 
 class LoginDialog(QDialog):
@@ -60,6 +68,14 @@ class LoginDialog(QDialog):
         uklad.addWidget(hasloLbl, 1, 0)
         uklad.addWidget(self.haslo, 1, 1)
         uklad.addWidget(self.przyciski, 2, 0, 2, 0)
+
+        # zmiana koloru dialogu
+
+        # zmiana kolorów etykiet, pól edycyjnych
+        loginLbl.setStyleSheet("color: #292522;")
+        hasloLbl.setStyleSheet("color: #292522;")
+        self.login.setStyleSheet("background-color: #a39081; color: #292522;")
+        self.haslo.setStyleSheet("background-color: #a39081; color: #292522;")
 
         # sygnały i sloty ###
         self.przyciski.accepted.connect(self.accept)
